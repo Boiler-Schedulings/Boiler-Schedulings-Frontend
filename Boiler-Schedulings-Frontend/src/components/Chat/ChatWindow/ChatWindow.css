@@ -14,15 +14,27 @@
     overflow: hidden;
 }
 
-
 .messages-container {
     flex-grow: 1;
     overflow-y: auto;
     padding: 10px;
-    display: flex;
-    flex-direction: column;
+    /* Custom scrollbar styles for Webkit browsers */
 }
 
+/* For Webkit browsers like Chrome, Safari */
+.messages-container::-webkit-scrollbar {
+    width: 0.6vw; /* Thicker scrollbar */
+}
+
+.messages-container::-webkit-scrollbar-track {
+    background: #eceff1;
+    border-radius: 6px; /* Rounder track */
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+    background-color: #90a4ae;
+    border-radius: 6px; /* Rounder thumb */
+}
 .message {
     background-color: #e0e0e0;
     margin: 5px 0;
