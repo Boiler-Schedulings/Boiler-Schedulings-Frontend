@@ -19,24 +19,30 @@ const presetMajors = [
     "Accounting",
 ];
 
-
 function LandingPage() {
     const [selectedMajors, setSelectedMajors] = useState([]);
+    const [showPopup, setShowPopup] = useState(false);
 
     const handleMajorClick = (major) => {
         const isSelected = selectedMajors.includes(major);
-    
+
         if (isSelected) {
-            // Unselect the major
             const updatedMajors = selectedMajors.filter((m) => m !== major);
             setSelectedMajors(updatedMajors);
         } else {
-            // Select the major
-            setSelectedMajors((prevMajors) => [...prevMajors, major]);
+            if (selectedMajors.length < 3) {
+                setSelectedMajors((prevMajors) => [...prevMajors, major]);
+            } else {
+                setShowPopup(true);
+            }
         }
     };
-    
-    const isButtonClickable = selectedMajors.length > 0;    
+
+    const closePopup = () => {
+        setShowPopup(false);
+    };
+
+    const isButtonClickable = selectedMajors.length > 0;
 
     return (
         <div className="landing-container">
@@ -61,11 +67,18 @@ function LandingPage() {
                     <a style={{ color: "#ffffff", textDecoration: "none" }} href="/chat">
                         Begin
                     </a>
-                </button>            
+                </button>
             ) : (
                 <button disabled className="disabled">
                     Begin
                 </button>
+            )}
+
+            {showPopup && (
+                <div className="popup">
+                    <p>Kill Yourself</p>
+                    <button onClick={closePopup}>OK</button>
+                </div>
             )}
         </div>
     );
