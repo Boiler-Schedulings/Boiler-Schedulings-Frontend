@@ -47,6 +47,7 @@ function ScheduleView({semestersData}) {
                 {semestersData.map((semesterData, index) => (
                     <SemesterWidget key={index} {...semesterData} />
                 ))}
+                <div className="twovh-pad"></div>
             </div>
         </div>
     );

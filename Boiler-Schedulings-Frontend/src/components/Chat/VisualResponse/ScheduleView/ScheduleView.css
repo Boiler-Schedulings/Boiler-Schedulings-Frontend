@@ -4,6 +4,7 @@
     width: 50vw;
     padding: 2vh;
     margin-left: 2vw;
+    margin-right: 2vw;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
@@ -12,7 +13,7 @@
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    gap: 1vw;
+    gap: 2vw;
 }
 
 .semester-widget-container {
@@ -35,13 +36,16 @@
     padding: 5px;
     margin-top: 5px;
     cursor: pointer;
+    width: 35vw;
     transition: background-color 0.3s;
 }
 
 .course-description:hover {
     background-color: #d9d9d9;
 }
-
+.twovh-pad{
+  margin-right:2vh;
+  }
 .course-overlay {
     position: fixed;
     top: 50%;
