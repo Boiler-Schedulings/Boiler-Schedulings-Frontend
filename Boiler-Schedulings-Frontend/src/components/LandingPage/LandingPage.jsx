@@ -39,6 +39,11 @@ presetMajors.sort();
 presetMajors.push("Other");
 
 function LandingPage() {
+    const { user } = useUser();
+    const navigate = useNavigate();
+    if(!user) {
+        navigate("/");
+    }
     const [selectedMajors, setSelectedMajors] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
     const handleMajorClick = (major) => {
@@ -61,7 +66,6 @@ function LandingPage() {
     };
 
     const isButtonClickable = selectedMajors.length > 0;
-    const navigate = useNavigate();
     function goToChat() {
         if (user && selectedMajors.length > 0) {
             const db = getDatabase();
@@ -78,7 +82,6 @@ function LandingPage() {
                 });
         }
     }
-    const { user } = useUser();
 
     return (
         <>
