@@ -6,19 +6,19 @@ h1, h2 {
 
 h1 {
     margin: 0;
-    font-size: 3vw; /* Larger font size for the main title */
+    font-size: 2.8vw; /* Larger font size for the main title */
 }
 
 h2 {
     margin: 0;
-    font-size: 1.6vw; /* Slightly smaller font size for the subtitle */
+    font-size: 1.4vw; /* Slightly smaller font size for the subtitle */
 }
 
 /* Additional styling to ensure the ChatTitle takes up the top 15vh */
 .chat-title-container {
     margin-top: 2vh;
     margin-bottom: 3vh;
-    height: 10vh; /* Set the height of the container */
+    height: 8vh; /* Set the height of the container */
     display: flex;
     flex-direction: column;
     justify-content: center; /* Center the content vertically */
