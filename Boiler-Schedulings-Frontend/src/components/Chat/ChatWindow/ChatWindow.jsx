@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './ChatWindow.css';
+import { getDatabase, ref, push } from 'firebase/database';
+import { getAuth } from 'firebase/auth';
+
 
 function ChatWindow() {
   const [messages, setMessages] = useState([]);
@@ -28,14 +31,27 @@ function ChatWindow() {
     // Simulate loading for 2 seconds
     await new Promise(resolve => setTimeout(resolve, 2000));
 
+    const auth = getAuth();
+    const userId = auth.currentUser ? auth.currentUser.uid : 'anonymous';
+
     const newEntry = {
       text: messageText,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
     };
 
-    setMessages([...messages, newEntry]);
-    setNewMessage('');
-    setIsLoading(false);
+    const db = getDatabase();
+    const messagesRef = ref(db, `${userId}/input/chats`);
+    push(messagesRef, newEntry)
+        .then(() => {
+          setMessages([...messages, newEntry]);
+          setNewMessage('');
+        })
+        .catch((error) => {
+          console.error("Error sending message: ", error);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
   };
 
   return (

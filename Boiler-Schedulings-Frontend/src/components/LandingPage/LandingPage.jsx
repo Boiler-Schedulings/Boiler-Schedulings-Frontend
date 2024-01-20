@@ -3,6 +3,7 @@ import './LandingPage.css';
 import {useNavigate} from "react-router-dom";
 import SignOutButton from "../SignOutButton/SignOutButton.jsx";
 import {useUser} from "../UserContext/UserContext.jsx";
+import { getDatabase, ref, set } from 'firebase/database';
 
 const presetMajors = [
     "Computer Science",
@@ -62,7 +63,20 @@ function LandingPage() {
     const isButtonClickable = selectedMajors.length > 0;
     const navigate = useNavigate();
     function goToChat() {
-        navigate('/chat');
+        if (user && selectedMajors.length > 0) {
+            const db = getDatabase();
+            const userId = user.uid;
+            const majorsRef = ref(db, `${userId}/input/majors`);
+
+            set(majorsRef, selectedMajors)
+                .then(() => {
+                    navigate('/chat');
+                })
+                .catch((error) => {
+                    console.error("Error saving majors: ", error);
+                    // Handle any errors here
+                });
+        }
     }
     const { user } = useUser();
 
