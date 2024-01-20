@@ -3,6 +3,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signOut } from 'firebase/auth';
+import './SignOutButton.css';
 
 function SignOutButton() {
     const navigate = useNavigate();

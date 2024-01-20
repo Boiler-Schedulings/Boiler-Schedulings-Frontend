@@ -1,5 +1,6 @@
 .schedule-view-container {
     background-color: #F5F5F5;
+    scroll-snap-align: center;
     border-radius: 10px;
     width: 50vw;
     padding: 2vh;

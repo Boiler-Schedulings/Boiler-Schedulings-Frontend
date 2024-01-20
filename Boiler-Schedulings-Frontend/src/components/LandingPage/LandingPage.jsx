@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './LandingPage.css';
 import {useNavigate} from "react-router-dom";
+import SignOutButton from "../SignOutButton/SignOutButton.jsx";
+import {useUser} from "../UserContext/UserContext.jsx";
 
 const presetMajors = [
     "Computer Science",
@@ -47,8 +49,11 @@ function LandingPage() {
     function goToChat() {
         navigate('/chat');
     }
+    const { user } = useUser();
 
     return (
+        <>
+            {user && <SignOutButton />}
         <div className="landing-container">
             <h1>Welcome to Schedule Chat</h1>
             <p>Start creating your schedule by chatting with our AI assistant!</p>
@@ -84,6 +89,7 @@ function LandingPage() {
                 </div>
             )}
         </div>
+            </>
     );
 }
 

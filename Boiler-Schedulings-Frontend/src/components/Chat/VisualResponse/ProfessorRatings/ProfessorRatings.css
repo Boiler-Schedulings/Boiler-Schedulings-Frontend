@@ -1,6 +1,7 @@
 .professor-ratings-container {
     position: relative;
     background-color: #F5F5F5;
+    scroll-snap-align: center;
     padding: 1vw;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

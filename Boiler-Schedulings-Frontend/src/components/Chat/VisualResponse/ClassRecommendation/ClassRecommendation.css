@@ -3,6 +3,7 @@
     background-color: #F5F5F5;
     padding: 1vw;
     border-radius: 10px;
+    scroll-snap-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 2vw;
 }

@@ -1,11 +1,14 @@
 .sign-out-button {
-    position: fixed;
-    top: 2vh;
-    right: 90vw;
-    padding: 10px 15px;
-    background-color: #f44336; /* Red color for sign-out button */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 100000;
+    background: #f44336 !important;
+    color: white;
+    position: fixed !important;
+    right: 2vh !important;
+    top: 2vh !important;
+    width: auto !important; /* Set width to auto to adjust to content */
+    height: auto !important; /* Set height to auto to adjust to content */
+    padding: 10px 15px !important;
+    border: none !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    z-index: 1000 !important;
 }

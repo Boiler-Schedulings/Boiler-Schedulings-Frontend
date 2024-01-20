@@ -3,6 +3,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signInWithRedirect, GoogleAuthProvider } from 'firebase/auth';
+import './SignIn.css';
 
 function SignIn() {
     const navigate = useNavigate();

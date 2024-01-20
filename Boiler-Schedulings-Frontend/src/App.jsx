@@ -14,7 +14,6 @@ function App() {
     return (
         <div className="app">
             <BrowserRouter>
-                {user && <SignOutButton />}
                 <Routes>
                     <Route path="/" element={!user ? <SignIn /> : <Navigate to="/landing" />} />
                     <Route path="/landing" element={user ? <LandingPage /> : <Navigate to="/" />} />
