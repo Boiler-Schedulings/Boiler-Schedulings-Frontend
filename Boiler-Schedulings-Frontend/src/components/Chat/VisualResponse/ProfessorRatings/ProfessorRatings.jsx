@@ -10,10 +10,10 @@ function ProfessorRatings({ ratings }) {
         if (averageRating >= 2.8) return '#a49e2f'; // Extremely Pale Yellow for rating >= 2.8
         if (averageRating >= 2.6) return '#9d8c3d'; // Almost White-Yellow for rating >= 2.6
         if (averageRating >= 2.5) return '#a6713c'; // Full Yellow for rating >= 2.5
-        if (averageRating >= 2.3) return '#864e2d'; // Lighter Yellow for rating >= 2.3
-        if (averageRating >= 2.1) return '#964125'; // Light Yellow for rating >= 2.1
-        if (averageRating >= 1) return '#9d3930'; // Orange for rating >= 1
-        return '#8a1616'; // Full Red for rating < 1
+        if (averageRating >= 2.3) return '#c06828'; // Lighter Yellow for rating >= 2.3
+        if (averageRating >= 2.1) return '#b64f2c'; // Light Yellow for rating >= 2.1
+        if (averageRating >= 1) return '#b63a2f'; // Orange for rating >= 1
+        return '#8c0707'; // Full Red for rating < 1
     }
 
 

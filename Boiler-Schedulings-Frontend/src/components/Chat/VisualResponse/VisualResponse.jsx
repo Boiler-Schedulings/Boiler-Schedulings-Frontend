@@ -45,6 +45,21 @@ function VisualResponse() {
             department: 'Dance',
             averageRating: 3.2,
         },
+        {
+            name: 'Professor Joe',
+            department: 'Computer Science',
+            averageRating: 2.4,
+        },
+        {
+            name: 'Professor Same',
+            department: 'Mathematics',
+            averageRating: 4.9,
+        },
+        {
+            name: 'Professor Goo',
+            department: 'Dance',
+            averageRating: 1.3,
+        },
         // Add more professor ratings as needed
     ];
 

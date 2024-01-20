@@ -1,7 +1,16 @@
+.chat-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full height of the viewport */
+    overflow: hidden; /* Prevent scrolling */
+}
+
 .chat-container {
     display: flex;
+    flex: 1;
     flex-direction: row;
-    height: 100vh;
+    gap:1vw;
+    height: 85vh;
     border-radius: 8px;
     overflow: hidden;
     /* Add more styles here */
