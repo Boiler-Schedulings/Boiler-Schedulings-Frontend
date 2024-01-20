@@ -17,7 +17,8 @@ function App() {
                 <Routes>
                     <Route path="/" element={!user ? <SignIn /> : <Navigate to="/landing" />} />
                     <Route path="/landing" element={user ? <LandingPage /> : <Navigate to="/" />} />
-                    <Route path="/chat" element={user ? <Chat /> : <Navigate to="/" />} />
+                    {/*<Route path="/chat" element={user ? <Chat /> : <Navigate to="/" />} />*/}
+                    <Route path="/chat" element={<Chat />} />
                 </Routes>
             </BrowserRouter>
         </div>
