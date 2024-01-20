@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './LandingPage.css';
+import { getAuth, signInWithRedirect, GoogleAuthProvider } from 'firebase/auth';
+import {useNavigate} from "react-router-dom";
 
 const presetMajors = [
     "Computer Science",
@@ -22,7 +24,12 @@ const presetMajors = [
 function LandingPage() {
     const [selectedMajors, setSelectedMajors] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
-
+    const navigate = useNavigate();
+    const handleSignIn = () => {
+        const auth = getAuth();
+        const provider = new GoogleAuthProvider();
+        signInWithRedirect(auth, provider);
+    };
     const handleMajorClick = (major) => {
         const isSelected = selectedMajors.includes(major);
 
@@ -48,7 +55,7 @@ function LandingPage() {
         <div className="landing-container">
             <h1>Welcome to Schedule Chat</h1>
             <p>Start creating your schedule by chatting with our AI assistant!</p>
-
+            <button onClick={handleSignIn}>Sign in with Google</button>
             <label>To begin, please select your degree(s) of study:</label>
             <div className="major-buttons-container">
                 {presetMajors.map((major) => (
