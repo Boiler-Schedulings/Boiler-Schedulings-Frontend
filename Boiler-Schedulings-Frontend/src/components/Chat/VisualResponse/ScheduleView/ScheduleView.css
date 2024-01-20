@@ -1,0 +1,91 @@
+.schedule-view-container {
+    background-color: #F5F5F5;
+    border-radius: 10px;
+    width: 50vw;
+    padding: 2vh;
+    margin-left: 2vw;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.schedule-view {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1vw;
+}
+
+.semester-widget-container {
+    scroll-snap-align: start;
+    width: calc(45vw + 4vh);
+}
+
+.semester-widget {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 2vh 1.5vw;
+    width: 45vw;
+    margin: 1vh 1vw;
+}
+
+.course-description {
+    background-color: #e9e9e9;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.course-description:hover {
+    background-color: #d9d9d9;
+}
+
+.course-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.course-overlay-content {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 50vw;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+
+/* Overlay Close Button */
+.overlay-close-button {
+    background-color: #F44336;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+/* Adjusted for consistent design */
+.semester-widget h3, .course-overlay h4 {
+    margin-top: 0;
+    color: #333;
+}
+
+.semester-widget p, .course-overlay p {
+    color: #666;
+}

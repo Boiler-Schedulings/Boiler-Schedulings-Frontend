@@ -10,7 +10,7 @@
     flex-wrap: wrap; /* Ensure wrapping of child elements */
     align-items: center;
     gap: 2vw;
-    width: 52vw;
+    width: 50vw;
 }
 
 .professor-ratings {
@@ -25,10 +25,10 @@
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    flex-basis: 12vw; /* Adjusting for the gap */
+    flex-basis: 11.3vw; /* Adjusting for the gap */
     padding: 2vw;
     text-align: center;
-    width: 12vw; /* Adjusted for three cards per row */
+    width: 11.3vw; /* Adjusted for three cards per row */
     height: calc(12vh + 10vw);
     margin-bottom: 2vh; /* Space between rows */
     display: flex;

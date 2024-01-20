@@ -62,13 +62,124 @@ function VisualResponse() {
         },
         // Add more professor ratings as needed
     ];
-
+    const semesters = [
+        {
+            semester: "Fall 2024",
+            courses: [
+                {
+                    name: "Course 1",
+                    description: "This is an example description for Course 1.",
+                    difficulty: 3,
+                    credits: 3
+                },
+                {
+                    name: "Course 2",
+                    description: "This is an example description for Course 1.",
+                    difficulty: 3,
+                    credits: 3
+                },
+                {
+                    name: "Course 3",
+                    description: "This is an example description for Course 1.",
+                    difficulty: 3,
+                    credits: 3
+                },
+                {
+                    name: "Course 4",
+                    description: "This is an example description for Course 1.",
+                    difficulty: 3,
+                    credits: 3
+                },
+                {
+                    name: "Course 5",
+                    description: "This is an example description for Course 1.",
+                    difficulty: 3,
+                    credits: 3
+                },
+            ],
+            totalCredits: 15
+        },
+        {
+            semester: "Spring 2025",
+            courses: [
+                {
+                    name: "Course 1",
+                    description: "This is an example description for Course 1.",
+                    difficulty: 3,
+                    credits: 3
+                },
+                {
+                    name: "Course 2",
+                    description: "This is an example description for Course 1.",
+                    difficulty: 3,
+                    credits: 3
+                },
+                {
+                    name: "Course 3",
+                    description: "This is an example description for Course 1.",
+                    difficulty: 3,
+                    credits: 3
+                },
+                {
+                    name: "Course 4",
+                    description: "This is an example description for Course 1.",
+                    difficulty: 3,
+                    credits: 3
+                },
+                {
+                    name: "Course 5",
+                    description: "This is an example description for Course 1.",
+                    difficulty: 3,
+                    credits: 3
+                },
+                // More courses...
+            ],
+            totalCredits: 15
+        },
+        {
+            semester: "Fall 2025",
+            courses: [
+                {
+                    name: "Course 1",
+                    description: "This is an example description for Course 1.",
+                    difficulty: 3,
+                    credits: 3
+                },
+                {
+                    name: "Course 2",
+                    description: "This is an example description for Course 1.",
+                    difficulty: 3,
+                    credits: 3
+                },
+                {
+                    name: "Course 3",
+                    description: "This is an example description for Course 1.",
+                    difficulty: 3,
+                    credits: 3
+                },
+                {
+                    name: "Course 4",
+                    description: "This is an example description for Course 1.",
+                    difficulty: 3,
+                    credits: 3
+                },
+                {
+                    name: "Course 5",
+                    description: "This is an example description for Course 1.",
+                    difficulty: 3,
+                    credits: 3
+                },
+            ],
+            totalCredits: 15
+        },
+        // More semesters...
+    ];
     return (
         <div className="visual-response-container">
             <ClassRecommendation classes={classesData} />
             <SelectorQuestion />
             <ProfessorRatings ratings={professorRatingsData}/>
-            <ScheduleView />
+            <ScheduleView semestersData={semesters}/>
             {/* Add more components as needed */}
         </div>
     );
