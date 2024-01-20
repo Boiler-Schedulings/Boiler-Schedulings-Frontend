@@ -6,6 +6,7 @@ import './index.css'
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import {UserProvider} from "./components/UserContext/UserContext.jsx";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -13,15 +14,15 @@ import { getAnalytics } from "firebase/analytics";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
 const firebaseConfig = {
-    apiKey: import.meta.env.VITE_API_KEY,
-    authDomain: import.meta.env.VITE_AUTH_DOMAIN,
-    projectId: import.meta.env.VITE_PROJECT_ID,
-    storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
-    messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
-    appId: import.meta.env.VITE_APP_ID,
-    measurementId: import.meta.env.VITE_MEASUREMENT_ID,
+    apiKey: "AIzaSyDUJcDgS0xwszqMAu33LvpQpBZmRNyN6Ro",
+    authDomain: "boilerschedulings.firebaseapp.com",
+    databaseURL: "https://boilerschedulings-default-rtdb.firebaseio.com",
+    projectId: "boilerschedulings",
+    storageBucket: "boilerschedulings.appspot.com",
+    messagingSenderId: "785034386913",
+    appId: "1:785034386913:web:ee4070166d8b5f2d4646a0",
+    measurementId: "G-KX0X1G7XGF"
 };
-
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -29,6 +30,8 @@ const analytics = getAnalytics(app);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+      <UserProvider>
+        <App />
+      </UserProvider>
   </React.StrictMode>,
 )

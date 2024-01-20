@@ -1,0 +1,11 @@
+.sign-out-button {
+    position: fixed;
+    top: 2vh;
+    right: 90vw;
+    padding: 10px 15px;
+    background-color: #f44336; /* Red color for sign-out button */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 100000;
+}

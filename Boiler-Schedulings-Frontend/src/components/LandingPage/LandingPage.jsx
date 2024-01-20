@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './LandingPage.css';
-import { getAuth, signInWithRedirect, GoogleAuthProvider } from 'firebase/auth';
 import {useNavigate} from "react-router-dom";
 
 const presetMajors = [
@@ -24,12 +23,6 @@ const presetMajors = [
 function LandingPage() {
     const [selectedMajors, setSelectedMajors] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
-    const navigate = useNavigate();
-    const handleSignIn = () => {
-        const auth = getAuth();
-        const provider = new GoogleAuthProvider();
-        signInWithRedirect(auth, provider);
-    };
     const handleMajorClick = (major) => {
         const isSelected = selectedMajors.includes(major);
 
@@ -50,12 +43,15 @@ function LandingPage() {
     };
 
     const isButtonClickable = selectedMajors.length > 0;
+    const navigate = useNavigate();
+    function goToChat() {
+        navigate('/chat');
+    }
 
     return (
         <div className="landing-container">
             <h1>Welcome to Schedule Chat</h1>
             <p>Start creating your schedule by chatting with our AI assistant!</p>
-            <button onClick={handleSignIn}>Sign in with Google</button>
             <label>To begin, please select your degree(s) of study:</label>
             <div className="major-buttons-container">
                 {presetMajors.map((major) => (
@@ -70,7 +66,7 @@ function LandingPage() {
             </div>
 
             {isButtonClickable ? (
-                <button className={isButtonClickable ? 'enabled' : 'disabled'}>
+                <button className={isButtonClickable? 'enabled' : 'disabled'} onClick={goToChat}>
                     <a style={{ color: "#ffffff", textDecoration: "none" }} href="/chat">
                         Begin
                     </a>
