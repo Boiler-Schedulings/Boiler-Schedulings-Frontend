@@ -20,7 +20,22 @@ const presetMajors = [
     "Aerospace Engineering",
     "Finance",
     "Accounting",
+    "English",
+    "History",
+    "Political Science",
+    "Philosophy",
+    "Physics",
+    "Chemistry",
+    "Statistics",
+    "Art",
+    "Music",
+    "Architecture",
+    "Business",
+    "Marketing"
 ];
+
+presetMajors.sort();
+presetMajors.push("Other");
 
 function LandingPage() {
     const [selectedMajors, setSelectedMajors] = useState([]);
@@ -73,12 +88,12 @@ function LandingPage() {
             {isButtonClickable ? (
                 <button className={isButtonClickable? 'enabled' : 'disabled'} onClick={goToChat}>
                     <a style={{ color: "#ffffff", textDecoration: "none" }} href="/chat">
-                        Begin
+                        Begin!
                     </a>
                 </button>
             ) : (
                 <button disabled className="disabled">
-                    Begin
+                    Begin!
                 </button>
             )}
 
