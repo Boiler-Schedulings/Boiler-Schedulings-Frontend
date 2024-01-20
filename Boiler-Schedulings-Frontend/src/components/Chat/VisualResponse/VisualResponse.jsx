@@ -28,11 +28,31 @@ function VisualResponse() {
             description: 'Contemporary Art Forms',
         },
     ];
+
+    const professorRatingsData = [
+        {
+            name: 'Professor John Doe',
+            department: 'Computer Science',
+            averageRating: 4.5,
+        },
+        {
+            name: 'Professor Jane Smith',
+            department: 'Mathematics',
+            averageRating: 4.2,
+        },
+        {
+            name: 'Professor Tinklebottom',
+            department: 'Dance',
+            averageRating: 3.2,
+        },
+        // Add more professor ratings as needed
+    ];
+
     return (
         <div className="visual-response-container">
             <ClassRecommendation classes={classesData} />
             <SelectorQuestion />
-            <ProfessorRatings />
+            <ProfessorRatings ratings={professorRatingsData}/>
             <ScheduleView />
             {/* Add more components as needed */}
         </div>
