@@ -1,8 +1,13 @@
 .chat-window-container {
     display: flex;
     flex-direction: column;
-    height: 90vh;
-    width: 40vw;
+    height: 88vh; /* Set height to 90% of the viewport height */
+    margin-top: 5vh; /* 5% of the viewport height from the top */
+    margin-bottom: 5vh; /* 5% of the viewport height from the bottom */
+    margin-right: 2vw;
+    width: 34vw; /* 34% of the viewport width from the right */
+    /* 2% of the viewport width as right padding */
+    padding: 2vh 2vw;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

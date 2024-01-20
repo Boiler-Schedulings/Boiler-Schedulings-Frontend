@@ -13,6 +13,9 @@ function ChatWindow() {
     useEffect(scrollToBottom, [messages]);
 
     const handleSendMessage = (e) => {
+        if(document.getElementById("ChatBox").value === ""){
+            return;
+        }
         if (e.key === 'Enter') {
             document.getElementById("ChatBox").value = "";
             const newEntry = {
