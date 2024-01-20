@@ -6,7 +6,7 @@ function ChatWindow() {
 
     const sendMessage = (message) => {
         setMessages([...messages, message]);
-        // Add logic to handle message
+        document.getElementById("ChatBox").value = "";
     };
 
     return (
@@ -16,7 +16,7 @@ function ChatWindow() {
                     <div key={index} className="message">{message}</div>
                 ))}
             </div>
-            <input type="text" onKeyDown={(e) => e.key === 'Enter' && sendMessage(e.target.value)} />
+            <input id = "ChatBox" placeholder="Enter a message..." type="text" onKeyDown={(e) => e.key === 'Enter' && sendMessage(e.target.value)} />
         </div>
     );
 }
