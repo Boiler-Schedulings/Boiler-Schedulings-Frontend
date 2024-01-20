@@ -2,53 +2,71 @@ import React, { useState, useEffect, useRef } from 'react';
 import './ChatWindow.css';
 
 function ChatWindow() {
-    const [messages, setMessages] = useState([]);
-    const [newMessage, setNewMessage] = useState('');
-    const messagesEndRef = useRef(null);
+  const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef(null);
 
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }
+
+  useEffect(scrollToBottom, [messages]);
+
+  const handleSendMessage = async (e) => {
+    if (isLoading || e.key !== 'Enter') {
+      return;
     }
 
-    useEffect(scrollToBottom, [messages]);
+    const messageText = newMessage.trim();
+    if (messageText === '') {
+      return;
+    }
 
-    const handleSendMessage = (e) => {
-        if(document.getElementById("ChatBox").value === ""){
-            return;
-        }
-        if (e.key === 'Enter') {
-            document.getElementById("ChatBox").value = "";
-            const newEntry = {
-                text: newMessage,
-                timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
-            };
-            setMessages([...messages, newEntry]);
-            setNewMessage('');
+    setIsLoading(true);
 
-        }
+    // Simulate loading for 2 seconds
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    const newEntry = {
+      text: messageText,
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
     };
 
-    return (
-        <div className="chat-window-container">
-            <div className="messages-container">
-                {messages.map((message, index) => (
+    setMessages([...messages, newEntry]);
+    setNewMessage('');
+    setIsLoading(false);
+  };
+
+  return (
+    <div className="chat-window-container">
+      <div className="messages-container">
+      {messages.map((message, index) => (
                     <div key={index} className="message">
                         <div>{message.text}</div>
                         <div className="timestamp">{message.timestamp}</div>
                     </div>
                 ))}
-                <div ref={messagesEndRef} />
-            </div>
-            <input
-                id = "ChatBox"
-                type="text"
-                placeholder="Enter a message..."
-                value={newMessage}
-                onChange={(e) => setNewMessage(e.target.value)}
-                onKeyDown={handleSendMessage}
-            />
-        </div>
-    );
+        <div ref={messagesEndRef} />
+      </div>
+      <div className="input-container">
+        {isLoading && (
+          <div className="loading-animation-container">
+            <div className="loading-animation"></div>
+          </div>
+        )}
+        <input
+          id="ChatBox"
+          type="text"
+          placeholder={isLoading ? 'Sending...' : 'Enter a message...'}
+          value={newMessage}
+          onChange={(e) => setNewMessage(e.target.value)}
+          onKeyDown={handleSendMessage}
+          disabled={isLoading}
+        />
+      </div>
+    </div>
+  );
 }
 
 export default ChatWindow;
