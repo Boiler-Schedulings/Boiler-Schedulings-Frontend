@@ -180,7 +180,7 @@ function VisualResponse() {
             <SelectorQuestion />
             <ProfessorRatings ratings={professorRatingsData}/>
             <ScheduleView semestersData={semesters}/>
-            {/* Add more components as needed */}
+            <div className="padding"></div>
         </div>
     );
 }
