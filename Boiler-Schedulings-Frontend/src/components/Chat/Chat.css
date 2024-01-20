@@ -1,0 +1,8 @@
+.chat-container {
+    display: flex;
+    flex-direction: row;
+    height: 90vh;
+    border-radius: 8px;
+    overflow: hidden;
+    /* Add more styles here */
+}
