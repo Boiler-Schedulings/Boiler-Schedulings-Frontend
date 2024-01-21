@@ -84,7 +84,7 @@ function ChatWindow() {
 
 
 
-    const base_url = 'http://127.0.0.1:8001/thread?'
+    const base_url = 'http://3.80.222.92:5000/thread?'
     const res = await fetch(base_url + new URLSearchParams({
       message: messageText
     }));
