@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import ClassRecommendation from './ClassRecommendation/ClassRecommendation';
 import ProfessorRatings from './ProfessorRatings/ProfessorRatings';
 import ScheduleView from './ScheduleView/ScheduleView';
@@ -66,9 +66,9 @@ export const parseCourseArrayClasses = (courseArray) => {
     return classesData;
 };
 
-
 function VisualResponse() {
     const [widgets, setWidgets] = useState([]);
+    const endOfWidgetsRef = useRef(null); // Ref
     const fetchWidgetHistory = () => {
         const auth = getAuth();
         const userId = auth.currentUser ? auth.currentUser.uid : 'anonymous';
@@ -87,6 +87,14 @@ function VisualResponse() {
             }
         });
     };
+    const scrollToBottom = () => {
+        endOfWidgetsRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    // Scroll to bottom every time widgets change
+    useEffect(() => {
+        scrollToBottom();
+    }, [widgets]);
     useEffect(() => {
         const intervalId = setInterval(() => {
             fetchWidgetHistory();
@@ -99,7 +107,7 @@ function VisualResponse() {
     return (
         <div className="visual-response-container">
             {Object.values(widgets).map((widget) => createWidget(widget.type, widget.data))}
-            <div className="padding"></div>
+            <div ref={endOfWidgetsRef} className="padding"></div> {/* Ref attached here */}
         </div>
     );
 }
