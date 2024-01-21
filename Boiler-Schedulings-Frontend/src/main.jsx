@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
+import {getAuth} from 'firebase/auth'
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -29,9 +30,11 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-      <UserProvider>
+    // <React.StrictMode>
+    <UserProvider app={app}>
         <App />
-      </UserProvider>
-  </React.StrictMode>,
+    </UserProvider>
+    // </React.StrictMode>,
 )
+
+export const auth = getAuth(app);

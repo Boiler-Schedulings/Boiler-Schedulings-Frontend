@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './ChatWindow.css';
 import { getDatabase, ref, push, onValue } from 'firebase/database';
-import { getAuth } from 'firebase/auth';
+import {getAuth, onAuthStateChanged} from 'firebase/auth';
+import {auth} from '../../../main.jsx'
 
 function ChatWindow() {
   const [messages, setMessages] = useState([]);
@@ -34,9 +35,19 @@ function ChatWindow() {
     });
   };
   // Fetch message history when the component mounts
-  if(messages.length===0) {
-    fetchMessageHistory();
-  }
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        console.log("uid", uid)
+        if(messages.length===0) {
+          fetchMessageHistory(uid);
+        }
+      } else {
+        console.log("Not logged in")
+      }
+    });
+  }, [])
 
   // Function to handle sending a new message
   const handleSendMessage = async (e) => {
