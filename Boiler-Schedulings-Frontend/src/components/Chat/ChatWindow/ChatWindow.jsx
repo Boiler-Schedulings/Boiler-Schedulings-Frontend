@@ -102,7 +102,7 @@ function ChatWindow() {
         <input
           id="ChatBox"
           type="text"
-          placeholder={isLoading ? 'Sending...' : 'Enter a message...'}
+          placeholder={isLoading ? 'Sending...' : 'Enter a message... the more details the better!'}
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
           onKeyDown={handleSendMessage}
