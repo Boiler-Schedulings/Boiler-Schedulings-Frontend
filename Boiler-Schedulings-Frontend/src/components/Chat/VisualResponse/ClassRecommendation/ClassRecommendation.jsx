@@ -22,6 +22,7 @@ const ClassRecommendation = ({ classes }) => {
     console.log(classes, "Class Reqs");
     return (
         <div className="class-recommendation-container">
+            <h1>Course Recommendations:</h1> {/* Header added here */}
             <ul className="class-list">
                 {Object.values(classes).map((classItem, index) => (
                     <li key={index} onClick={() => handleSelectClass(classItem)}>

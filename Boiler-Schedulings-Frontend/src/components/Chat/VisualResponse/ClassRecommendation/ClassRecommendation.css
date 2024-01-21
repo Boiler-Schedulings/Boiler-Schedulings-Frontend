@@ -7,6 +7,12 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 2vw;
 }
+.class-recommendation-container h1 {
+    text-align: center;
+    color: #333; /* Example color */
+    margin-bottom:4vh; /* Example margin */
+    font-size: 2.2vw;
+}
 
 .class-list {
     list-style: none;
@@ -40,7 +46,7 @@
     padding: 2vh;
     border-radius: 8px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-    z-index: 1000;
+    z-index: 10002;
     animation: slideIn 0.3s ease-out;
 }
 
