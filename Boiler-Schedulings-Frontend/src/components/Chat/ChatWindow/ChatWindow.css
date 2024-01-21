@@ -39,8 +39,15 @@
     background-color: #90a4ae;
     border-radius: 6px; /* Rounder thumb */
 }
-.message {
+.user-message {
     background-color: #e0e0e0;
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 5px;
+    scroll-snap-align: start;
+}
+.ai-message {
+    background-color: #b1e9aa;
     margin: 5px 0;
     padding: 5px;
     border-radius: 5px;

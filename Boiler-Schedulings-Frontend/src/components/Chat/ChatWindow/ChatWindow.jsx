@@ -135,7 +135,7 @@ function ChatWindow() {
     <div className="chat-window-container">
       <div className="messages-container">
         {messages.map((message, index) => (
-          <div key={index} className="message">
+          <div key={index} className={(message['role'] === 'user') ? 'user-message' : 'ai-message'}>
             <div>{message.text}</div>
             <div className="timestamp">{message.timestamp}</div>
           </div>
