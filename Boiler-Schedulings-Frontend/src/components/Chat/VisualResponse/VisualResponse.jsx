@@ -53,7 +53,7 @@ export const parseCourseArrayClasses = (courseArray) => {
         // Check if the necessary information is present
         if (match) {
             const className = `Class${index + 1}`;
-            const name = match[1].trim();
+            const name = match[1].trim()
             const description = match[2].trim();
 
             // Creating class entry in classesData
