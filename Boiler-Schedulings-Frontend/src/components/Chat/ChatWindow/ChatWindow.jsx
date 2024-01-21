@@ -51,34 +51,73 @@ function ChatWindow() {
 
     setIsLoading(true);
 
-    // Simulate loading for 2 seconds
-    await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    const auth = getAuth();
-    const userId = auth.currentUser ? auth.currentUser.uid : 'anonymous';
+    // // Simulate loading for 2 seconds
+    // await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    const newEntry = {
+    // const auth = getAuth();
+    // const userId = auth.currentUser ? auth.currentUser.uid : 'anonymous';
+
+    const userMessage = {
       text: messageText,
       timestamp: new Date().toLocaleTimeString([], {
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit',
       }),
+      role: "user"
     };
 
+    setMessages([...messages, userMessage]);
+    setNewMessage('');
+
+
+
+    const base_url = 'http://127.0.0.1:8001/thread?'
+    const res = await fetch(base_url + new URLSearchParams({
+      message: messageText
+    }));
+    let chat_data = await res.json();
+    console.log(chat_data);
+
+    const aiMessage = {
+      text: chat_data.response,
+      timestamp: new Date().toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+      }),
+      role: "assistant"
+    }
+    setMessages([...messages, aiMessage]);
+    setNewMessage('');
+
     const db = getDatabase();
-    const messagesRef = ref(db, `${userId}/input/chats`);
-    push(messagesRef, newEntry)
-      .then(() => {
-        setMessages([...messages, newEntry]);
-        setNewMessage('');
-      })
-      .catch((error) => {
-        console.error('Error sending message: ', error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    const userMessagesRef = ref(db, `${userId}/input/chats`);
+    push(userMessagesRef, userMessage)
+        // .then(() => {
+        //   setMessages([...messages, userMessage]);
+        //   setNewMessage('');
+        // })
+        .catch((error) => {
+          console.error('Error sending message: ', error);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+
+    const aiMessagesRef = ref(db, `${userId}/output/chats`);
+    push(aiMessagesRef, aiMessage)
+        // .then(() => {
+        //   setMessages([...messages, aiMessage]);
+        //   setNewMessage('');
+        // })
+        .catch((error) => {
+          console.error('Error sending message: ', error);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
   };
 
   return (
