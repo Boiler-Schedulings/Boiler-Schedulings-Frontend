@@ -3,6 +3,7 @@ import './ChatWindow.css';
 import { getDatabase, ref, push, onValue, get } from 'firebase/database';
 import {getAuth, onAuthStateChanged} from 'firebase/auth';
 import {auth} from '../../../main.jsx'
+import {parseCourseArrayClasses, writeToFirebaseWithObjectType} from "../VisualResponse/VisualResponse.jsx";
 
 const initMessages = () => {
   const dbRef = ref(getDatabase());
@@ -117,12 +118,24 @@ function ChatWindow() {
 
 
 
-    const base_url = 'http://127.0.0.1:8001/thread?'
-    const res = await fetch(base_url + new URLSearchParams({
+    const thread_url = 'http://127.0.0.1:8001/thread?'
+    const res1 = await fetch(thread_url + new URLSearchParams({
       message: messageText
     }));
-    let chat_data = await res.json();
+
+    const catalog_url = 'http://127.0.0.1:8001/catalog?'
+    const res2 = await fetch(catalog_url + new URLSearchParams({
+      query: messageText
+    }));
+    
+    let chat_data = await res1.json();
+    let widget_data = await res2.json();
+
     console.log(chat_data);
+    console.log(widget_data);
+
+    let classesData = parseCourseArrayClasses(widget_data);
+    writeToFirebaseWithObjectType(classesData, 'classes');
 
     const aiMessage = {
       text: chat_data.response,
