@@ -49,7 +49,7 @@ export const parseCourseArrayClasses = (courseArray) => {
     courseArray.forEach((course, index) => {
         // Extracting information using regular expressions
         const titleMatch = course.match(/COURSE_TITLE: (.*?) \|/);
-        const descriptionMatch = course.match(/DESCRIPTION: (.*?) \*\*Credits:\*\* (\d+\.\d+)/);
+        const descriptionMatch = course.match(/DESCRIPTION: (.*?) \*\*Credits:\*\* \d+\.\d+/);
 
         // Check if all necessary information is present
         if (titleMatch && descriptionMatch) {
