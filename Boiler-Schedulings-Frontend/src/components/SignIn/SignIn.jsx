@@ -9,7 +9,7 @@ import {set} from "firebase/database";
 function SignIn() {
     const navigate = useNavigate();
 
-    const handleSignIn = () => {
+    const handleSignIn = async () => {
         const auth = getAuth();
         const provider = new GoogleAuthProvider();
         signInWithRedirect(auth, provider);
