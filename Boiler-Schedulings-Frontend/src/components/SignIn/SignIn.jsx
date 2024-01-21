@@ -21,7 +21,6 @@ function SignIn() {
         <div className="landing-page">
             <h1>Welcome to BOILER SCHEDULINGS</h1>
             <button onClick={handleSignIn}>Sign in with Google</button>
-            {signInClicked&&<Overlay></Overlay>}
         </div>
     );
 }
