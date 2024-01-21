@@ -240,36 +240,35 @@ export default ChatWindow;
 
 const professorRatingsData = {
   ProfessorJohnDoe: {
-    name: 'Professor John Doe',
+    name: 'Jeff Turkstra',
     department: 'Computer Science',
-    averageRating: 4.5,
+    averageRating: 3.8,
   },
   ProfessorJaneSmith: {
-    name: 'Professor Jane Smith',
-    department: 'Mathematics',
-    averageRating: 4.2,
+    name: 'Alexander Chubykin',
+    department: 'Biological Sciences',
+    averageRating: 5.0,
   },
   ProfessorTinklebottom: {
-    name: 'Professor Tinklebottom',
-    department: 'Dance',
-    averageRating: 3.2,
+    name: 'Ellen Bulow',
+    department: 'Liberal Arts',
+    averageRating: 1.5,
   },
   ProfessorJoe: {
-    name: 'Professor Joe',
-    department: 'Computer Science',
-    averageRating: 2.4,
+    name: 'Kaitlyn Hood',
+    department: 'Math',
+    averageRating: 3.3,
   },
   ProfessorSam: {
-    name: 'Professor Sam',
-    department: 'Mathematics',
-    averageRating: 4.9,
+    name: 'Paul Draper',
+    department: 'Philosophy',
+    averageRating: 3.5,
   },
   ProfessorGoo: {
-    name: 'Professor Goo',
-    department: 'Dance',
-    averageRating: 1.3,
+    name: 'Ernest Blatchley',
+    department: 'Civil Engineering',
+    averageRating: 4.6,
   },
-  // Add more professor ratings as needed
 };
 
 const semesters = {
