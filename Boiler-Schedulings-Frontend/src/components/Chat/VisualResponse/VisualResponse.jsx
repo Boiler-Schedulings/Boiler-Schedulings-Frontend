@@ -3,11 +3,11 @@ import ClassRecommendation from './ClassRecommendation/ClassRecommendation';
 import ProfessorRatings from './ProfessorRatings/ProfessorRatings';
 import ScheduleView from './ScheduleView/ScheduleView';
 import './VisualResponse.css';
-import {getAuth} from "firebase/auth";
+import {getAuth, onAuthStateChanged} from "firebase/auth";
 import {getDatabase, onValue, push, ref} from "firebase/database";
+import {auth} from "../../../main.jsx";
 
 function createWidget(type, data) {
-    console.log(type,data,"create");
     switch (type) {
         case "classes":
             return <ClassRecommendation classes={data} />;
@@ -53,12 +53,12 @@ export const parseCourseArrayClasses = (courseArray) => {
         // Check if the necessary information is present
         if (match) {
             const className = `Class${index + 1}`;
-            const titleAndCode = match[1].trim();
+            const name = match[1].trim();
             const description = match[2].trim();
 
             // Creating class entry in classesData
             classesData[className] = {
-                titleAndCode,
+                name,
                 description
             };
         }
@@ -87,7 +87,14 @@ function VisualResponse() {
             }
         });
     };
-    useEffect(fetchWidgetHistory, []);
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            fetchWidgetHistory();
+        }, 2000); // 2000 milliseconds = 2 seconds
+
+        return () => clearInterval(intervalId); // Clear interval on component unmount
+    }, []);
+
 
     return (
         <div className="visual-response-container">
