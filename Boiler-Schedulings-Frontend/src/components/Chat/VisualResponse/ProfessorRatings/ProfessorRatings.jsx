@@ -19,7 +19,7 @@ function ProfessorRatings({ ratings }) {
 
     return (
         <div className="professor-ratings-container">
-            {ratings.map((rating, index) => (
+            {Object.values(ratings).map((rating, index) => (
                 <div key={index} className="rating-card">
                     <h3 className="professor-name">{rating.name}</h3>
                     <p className="department">{rating.department}</p>

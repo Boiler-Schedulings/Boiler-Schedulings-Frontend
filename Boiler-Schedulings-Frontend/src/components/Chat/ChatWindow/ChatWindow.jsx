@@ -33,11 +33,10 @@ function ChatWindow() {
       }
     });
   };
-
   // Fetch message history when the component mounts
-  useEffect(() => {
+  if(messages.length===0) {
     fetchMessageHistory();
-  });
+  }
 
   // Function to handle sending a new message
   const handleSendMessage = async (e) => {

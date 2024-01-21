@@ -15,7 +15,7 @@ function SemesterWidget({ semester, courses, totalCredits }) {
                 <div className="semester-widget">
                     <h3>{semester}</h3>
                     <ul>
-                        {courses.map((course, index) => (
+                        {Object.values(courses).map((course, index) => (
                             <li key={index}>
                                 {course.name} - Difficulty: {course.difficulty}
                                 <div className="course-description" onClick={() => handleCourseClick(course)}>
@@ -40,11 +40,12 @@ function SemesterWidget({ semester, courses, totalCredits }) {
     );
 }
 
-function ScheduleView({semestersData}) {
+
+function ScheduleView({ semestersData }) {
     return (
         <div className="schedule-view-container">
             <div className="schedule-view">
-                {semestersData.map((semesterData, index) => (
+                {Object.values(semestersData).map((semesterData, index) => (
                     <SemesterWidget key={index} {...semesterData} />
                 ))}
                 <div className="twovh-pad"></div>
@@ -52,5 +53,6 @@ function ScheduleView({semestersData}) {
         </div>
     );
 }
+
 
 export default ScheduleView;

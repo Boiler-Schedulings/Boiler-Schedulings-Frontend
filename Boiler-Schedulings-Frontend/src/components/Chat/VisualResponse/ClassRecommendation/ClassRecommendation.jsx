@@ -20,7 +20,7 @@ const ClassRecommendation = ({ classes }) => {
     return (
         <div className="class-recommendation-container">
             <ul className="class-list">
-                {classes.map((classItem, index) => (
+                {Object.values(classes).map((classItem, index) => (
                     <li key={index} onClick={() => handleSelectClass(classItem)}>
                         {classItem.name}
                     </li>
