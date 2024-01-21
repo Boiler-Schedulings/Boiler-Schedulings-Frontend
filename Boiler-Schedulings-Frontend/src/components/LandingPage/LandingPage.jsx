@@ -3,7 +3,7 @@ import './LandingPage.css';
 import {useNavigate} from "react-router-dom";
 import SignOutButton from "../SignOutButton/SignOutButton.jsx";
 import {useUser} from "../UserContext/UserContext.jsx";
-import { getDatabase, ref, set } from 'firebase/database';
+import { getDatabase, ref, set, push } from 'firebase/database';
 
 const presetMajors = [
     "Computer Science",
@@ -79,9 +79,10 @@ function LandingPage() {
         if (user && selectedMajors.length > 0) {
             const db = getDatabase();
             const userId = user.uid;
+            console.log(userId)
             const majorsRef = ref(db, `${userId}/input/majors`);
 
-            set(majorsRef, selectedMajors)
+            push(majorsRef, selectedMajors)
                 .then(() => {
                     navigate('/chat');
                 })
@@ -116,9 +117,9 @@ function LandingPage() {
 
             {isButtonClickable ? (
                 <button className={isButtonClickable? 'enabled' : 'disabled'} onClick={goToChat}>
-                    <a style={{ color: "#ffffff", textDecoration: "none" }} href="/chat">
+                    {/* <a style={{ color: "#ffffff", textDecoration: "none" }} href="/chat"> */}
                         Begin!
-                    </a>
+                    {/* </a> */}
                 </button>
             ) : (
                 <button disabled className="disabled">
