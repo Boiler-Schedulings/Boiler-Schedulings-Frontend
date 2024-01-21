@@ -277,67 +277,67 @@ const semesters = {
     semester: "Fall 2024",
     courses: {
       Course1: {
-        name: "Course 1",
+        name: "CS18000",
         description: "This is an example description for Course 1.",
         difficulty: 3,
         credits: 3
       },
       Course2: {
-        name: "Course 2",
+        name: "MA26100",
         description: "This is an example description for Course 2.",
         difficulty: 3,
-        credits: 3
+        credits: 4
       },
       Course3: {
-        name: "Course 3",
+        name: "CS19300",
         description: "This is an example description for Course 3.",
-        difficulty: 3,
-        credits: 3
+        difficulty: 2,
+        credits: 1
       },
       Course4: {
-        name: "Course 4",
+        name: "TDM10100",
         description: "This is an example description for Course 4.",
-        difficulty: 3,
-        credits: 3
+        difficulty: 4,
+        credits: 1
       },
       Course5: {
-        name: "Course 5",
+        name: "TDM11100",
         description: "This is an example description for Course 5.",
         difficulty: 3,
         credits: 3
       },
     },
-    totalCredits: 15
+    totalCredits: 12
   },
   Spring2025: {
     semester: "Spring 2025",
     courses: {
       Course1: {
-        name: "Course 1",
+        name: "CS18200",
         description: "This is an example description for Course 1.",
         difficulty: 3,
         credits: 3
       },
       Course2: {
-        name: "Course 2",
+        name: "CS24000",
         description: "This is an example description for Course 2.",
         difficulty: 3,
         credits: 3
       },
       Course3: {
-        name: "Course 3",
+        name: "MA26500",
         description: "This is an example description for Course 3.",
         difficulty: 3,
         credits: 3
       },
       Course4: {
-        name: "Course 4",
+        name: "TDM11200",
         description: "This is an example description for Course 4.",
         difficulty: 3,
         credits: 3
       },
       Course5: {
-        name: "Course 5",
+        name: "EAPS375",
         description: "This is an example description for Course 5.",
         difficulty: 3,
         credits: 3
@@ -350,36 +350,36 @@ const semesters = {
     semester: "Fall 2025",
     courses: {
       Course1: {
-        name: "Course 1",
+        name: "CS25000",
         description: "This is an example description for Course 1.",
         difficulty: 3,
-        credits: 3
+        credits: 4
       },
       Course2: {
-        name: "Course 2",
+        name: "CS25100",
         description: "This is an example description for Course 2.",
         difficulty: 3,
         credits: 3
       },
       Course3: {
-        name: "Course 3",
+        name: "HONR19903",
         description: "This is an example description for Course 3.",
         difficulty: 3,
         credits: 3
       },
       Course4: {
-        name: "Course 4",
+        name: "MA26600",
         description: "This is an example description for Course 4.",
         difficulty: 3,
         credits: 3
       },
       Course5: {
-        name: "Course 5",
+        name: "TDM20100",
         description: "This is an example description for Course 5.",
         difficulty: 3,
-        credits: 3
+        credits: 1
       },
     },
-    totalCredits: 15
+    totalCredits: 14
   },
 };
