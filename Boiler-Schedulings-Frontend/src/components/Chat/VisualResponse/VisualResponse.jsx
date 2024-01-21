@@ -87,14 +87,7 @@ function VisualResponse() {
             }
         });
     };
-    const scrollToBottom = () => {
-        endOfWidgetsRef.current?.scrollIntoView({ behavior: 'smooth' });
-    };
 
-    // Scroll to bottom every time widgets change
-    useEffect(() => {
-        scrollToBottom();
-    }, [widgets]);
     useEffect(() => {
         const intervalId = setInterval(() => {
             fetchWidgetHistory();

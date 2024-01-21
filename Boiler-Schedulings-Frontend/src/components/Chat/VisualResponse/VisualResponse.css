@@ -1,9 +1,9 @@
 .visual-response-container {
     height: 82vh; /* Set a maximum height */
-    width:50vw;
+    width:60vw;
     margin-top: 15vh;
     margin-bottom: 5vh;
-    margin-left: 2vw;
+    margin-left: 2vh;
     overflow-y: auto; /* Enable vertical scrolling */
     overflow-x: hidden; /* Enable vertical scrolling */
     scroll-snap-type: y mandatory;
