@@ -3,6 +3,9 @@ import Overlay from './ClassRecOverlay/ClassRecOverlay.jsx';
 import './ClassRecommendation.css';
 
 const ClassRecommendation = ({ classes }) => {
+    if(classes===null){
+        return null;
+    }
     const [selectedClass, setSelectedClass] = useState(null);
 
     const handleSelectClass = (classItem) => {
@@ -16,7 +19,7 @@ const ClassRecommendation = ({ classes }) => {
     if (!classes) {
         return <div>Loading...</div>;
     }
-
+    console.log(classes, "Class Reqs");
     return (
         <div className="class-recommendation-container">
             <ul className="class-list">

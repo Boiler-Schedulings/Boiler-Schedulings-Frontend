@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import './ScheduleView.css';
 
-
 function SemesterWidget({ semester, courses, totalCredits }) {
     const [selectedCourse, setSelectedCourse] = useState(null);
 
     const handleCourseClick = (course) => {
         setSelectedCourse(course);
     };
-
+    console.log(semester, "Sem");
+    console.log(courses, "Course List");
+    console.log(totalCredits, "Credits ");
     return (
         <>
             <div className="semester-widget-container">
@@ -40,19 +41,25 @@ function SemesterWidget({ semester, courses, totalCredits }) {
     );
 }
 
-
 function ScheduleView({ semestersData }) {
+    if(semestersData===null){
+        return null;
+    }
+    console.log(semestersData, "Schedjy");
     return (
         <div className="schedule-view-container">
             <div className="schedule-view">
-                {Object.values(semestersData).map((semesterData, index) => (
-                    <SemesterWidget key={index} {...semesterData} />
-                ))}
+                {semestersData ? (
+                    Object.values(semestersData).map((semesterData, index) => (
+                        <SemesterWidget key={index} {...semesterData} />
+                    ))
+                ) : (
+                    <p>No semester data available</p>
+                )}
                 <div className="twovh-pad"></div>
             </div>
         </div>
     );
 }
-
 
 export default ScheduleView;

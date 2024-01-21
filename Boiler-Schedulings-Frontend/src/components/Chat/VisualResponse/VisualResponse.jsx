@@ -4,7 +4,7 @@ import ProfessorRatings from './ProfessorRatings/ProfessorRatings';
 import ScheduleView from './ScheduleView/ScheduleView';
 import './VisualResponse.css';
 import {getAuth} from "firebase/auth";
-import {getDatabase, onValue, ref} from "firebase/database";
+import {getDatabase, onValue, push, ref} from "firebase/database";
 
 function VisualResponse() {
     const [widgets, setWidgets] = useState([]);
@@ -19,42 +19,65 @@ function VisualResponse() {
             if (snapshot.exists()) {
                 const widgetData = snapshot.val();
                 const extracted = Object.values(widgetData);
-                console.log(extracted);
                 setWidgets((prevWidgets) => {
                     prevWidgets = extracted
                     return prevWidgets
                 })
-                console.log(widgets);
             }
         });
     };
 
     function createWidget(type, data) {
-        if (type === "ClassRecommendation") {
-            return <ClassRecommendation classes={data} />;
+        console.log(type,data,"create");
+        switch (type) {
+            case "classes":
+                return <ClassRecommendation classes={data} />;
+            case "professorRatings":
+                return <ProfessorRatings ratings={data} />;
+            case "semesters":
+                return <ScheduleView semestersData={data} />;
+            default:
+                return null; // Return null for unknown types or when there's no data
         }
-        if (type === "ProfessorRatings") {
-            return <ProfessorRatings ratings={data} />;
-        }
-        if (type === "ScheduleView") {
-            return <ScheduleView semestersData={data} />;
-        }
-        return null; // Return null for unknown types or when there's no data
-    }
-    if(widgets.length===0){
-        fetchWidgetHistory();
     }
 
-    function createDiv() {
-        return (<div>test</div>);
+
+
+    const writeToFirebaseWithObjectType = async (dataObject, objectType) => {
+        try {
+            const auth = getAuth();
+            const userId = auth.currentUser ? auth.currentUser.uid : 'anonymous';
+
+            const db = getDatabase();
+            const widgetsRef = ref(db, `${userId}/output/widgets`);
+
+            // Create a new object with 'type' and 'data' fields
+            const dataWithObjectType = {
+                type: objectType,
+                data: dataObject,
+            };
+
+            // Write the data to Firebase
+            await push(widgetsRef, dataWithObjectType);
+
+            console.log(`Data of type '${objectType}' written to Firebase successfully.`);
+        } catch (error) {
+            console.error('Error writing data to Firebase: ', error);
+        }
+    };
+
+
+
+    if(widgets.length===0){
+        // writeToFirebaseWithObjectType(classesData, 'classes');
+        // writeToFirebaseWithObjectType(professorRatingsData, 'professorRatings');
+        // writeToFirebaseWithObjectType(semesters, 'semesters');
+        fetchWidgetHistory();
     }
 
     return (
         <div className="visual-response-container">
             {widgets.map((widget) => createWidget(widget.type, widget.data))}
-            <ScheduleView semestersData={semesters} />
-            <ClassRecommendation classes={classesData} />
-            <ProfessorRatings ratings={professorRatingsData} />
             <div className="padding"></div>
         </div>
     );

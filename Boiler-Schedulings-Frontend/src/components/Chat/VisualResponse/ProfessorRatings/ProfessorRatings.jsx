@@ -15,8 +15,10 @@ function ProfessorRatings({ ratings }) {
         if (averageRating >= 1) return '#b63a2f'; // Orange for rating >= 1
         return '#8c0707'; // Full Red for rating < 1
     }
-
-
+    console.log(ratings, "Professor Ratings");
+    if(ratings===null){
+        return null;
+    }
     return (
         <div className="professor-ratings-container">
             {Object.values(ratings).map((rating, index) => (
