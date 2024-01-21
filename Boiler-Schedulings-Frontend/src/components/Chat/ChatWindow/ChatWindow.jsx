@@ -65,7 +65,7 @@ function ChatWindow() {
         })
       }
     });
-    
+
   };
   // Fetch message history when the component mounts
   useEffect(() => {
@@ -99,8 +99,8 @@ function ChatWindow() {
     // // Simulate loading for 2 seconds
     // await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    // const auth = getAuth();
-    // const userId = auth.currentUser ? auth.currentUser.uid : 'anonymous';
+    const auth = getAuth();
+    const userId = auth.currentUser ? auth.currentUser.uid : 'anonymous';
 
     const userMessage = {
       text: messageText,
