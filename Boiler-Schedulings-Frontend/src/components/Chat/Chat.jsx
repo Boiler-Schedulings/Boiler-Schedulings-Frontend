@@ -5,6 +5,7 @@ import './Chat.css';
 import ChatTitle from "./ChatTitle/ChatTitle.jsx";
 import {useUser} from "../UserContext/UserContext.jsx";
 import {useNavigate} from "react-router-dom";
+import SignOutButton from "../SignOutButton/SignOutButton.jsx";
 
 function Chat() {
     const { user } = useUser();
@@ -13,13 +14,16 @@ function Chat() {
         navigate("/");
     }
     return (
-        <div className="chat-wrapper">
-        <ChatTitle/>
-        <div className="chat-container">
-            <VisualResponse/>
-            <ChatWindow/>
-        </div>
-        </div>
+        <>
+            <SignOutButton />
+            <div className="chat-wrapper">
+                <ChatTitle/>
+                <div className="chat-container">
+                    <VisualResponse/>
+                    <ChatWindow/>
+                </div>
+            </div>
+        </>
     );
 }
 

@@ -85,7 +85,7 @@ function LandingPage() {
 
     return (
         <>
-            {user && <SignOutButton />}
+            <SignOutButton />
         <div className="landing-container">
             <h1>Welcome to Schedule Chat</h1>
             <p>Start creating your schedule by chatting with our AI assistant!</p>

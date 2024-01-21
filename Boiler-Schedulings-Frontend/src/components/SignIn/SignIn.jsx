@@ -1,9 +1,10 @@
 // SignIn.jsx
 
-import React from 'react';
+import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signInWithRedirect, GoogleAuthProvider } from 'firebase/auth';
 import './SignIn.css';
+import {set} from "firebase/database";
 
 function SignIn() {
     const navigate = useNavigate();
@@ -11,21 +12,16 @@ function SignIn() {
     const handleSignIn = () => {
         const auth = getAuth();
         const provider = new GoogleAuthProvider();
+        signInWithRedirect(auth, provider);
+        navigate('/landing');
 
-        signInWithRedirect(auth, provider).then(() => {
-            // After successful sign in, navigate to the landing page
-            navigate('/landing');
-        }).catch((error) => {
-            // Handle sign-in errors here
-            console.error('Sign-in error:', error);
-        });
     };
 
     return (
         <div className="landing-page">
             <h1>Welcome to BOILER SCHEDULINGS</h1>
             <button onClick={handleSignIn}>Sign in with Google</button>
-            {/* Additional content */}
+            {signInClicked&&<Overlay></Overlay>}
         </div>
     );
 }
