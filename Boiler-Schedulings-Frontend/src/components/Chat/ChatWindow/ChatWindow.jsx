@@ -116,11 +116,25 @@ function ChatWindow() {
     setMessages([...messages, userMessage]);
     setNewMessage('');
 
-
+    const db = getDatabase()
+    const messagesRef = ref(db, `${userId}/input/majors`);
+    let majors=[];
+    // Listen for changes in the database and update state
+    onValue(messagesRef, (snapshot) => {
+      console.log(snapshot.exists());
+      if (snapshot.exists()) {
+        const degrees = snapshot.val();
+        const extracted = Object.values(degrees);
+        console.log('hgfgfgyguy',degrees);
+        majors = extracted;
+      }
+    });
+    console.log('1234567',majors);
 
     const thread_url = 'http://127.0.0.1:8001/thread?'
     const res1 = await fetch(thread_url + new URLSearchParams({
-      message: messageText
+      message: messageText,
+      degrees: majors.toString()
     }));
 
     const catalog_url = 'http://127.0.0.1:8001/catalog?'
@@ -150,7 +164,6 @@ function ChatWindow() {
     setNewMessage('');
     setIsLoading(false)
 
-    const db = getDatabase();
     const userMessagesRef = ref(db, `${userId}/input/chats`);
     push(userMessagesRef, userMessage)
         // .then(() => {
