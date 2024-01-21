@@ -48,25 +48,24 @@ export const parseCourseArrayClasses = (courseArray) => {
 
     courseArray.forEach((course, index) => {
         // Extracting information using regular expressions
-        const titleMatch = course.match(/COURSE_TITLE: (.*?) \|/);
-        const descriptionMatch = course.match(/DESCRIPTION: (.*?) \*\*Credits:\*\* \d+\.\d+/);
+        const match = course.match(/COURSE_TITLE: (.*?) \| DESCRIPTION: (.*)/);
 
-        // Check if all necessary information is present
-        if (titleMatch && descriptionMatch) {
+        // Check if the necessary information is present
+        if (match) {
             const className = `Class${index + 1}`;
-            const name = titleMatch[1].trim();
-            const description = descriptionMatch[1].trim();
+            const titleAndCode = match[1].trim();
+            const description = match[2].trim();
 
             // Creating class entry in classesData
             classesData[className] = {
-                name,
+                titleAndCode,
                 description
             };
         }
     });
-
     return classesData;
 };
+
 
 function VisualResponse() {
     const [widgets, setWidgets] = useState([]);
