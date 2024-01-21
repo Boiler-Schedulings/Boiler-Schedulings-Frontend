@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './LandingPage.css';
 import {useNavigate} from "react-router-dom";
 import SignOutButton from "../SignOutButton/SignOutButton.jsx";
@@ -46,6 +46,15 @@ function LandingPage() {
     }
     const [selectedMajors, setSelectedMajors] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
+    const [showOverlay, setShowOverlay] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowOverlay(false);
+        }, 1500);
+        return () => clearTimeout(timer);
+    }, []);
+
     const handleMajorClick = (major) => {
         const isSelected = selectedMajors.includes(major);
 
@@ -86,6 +95,9 @@ function LandingPage() {
     return (
         <>
             <SignOutButton />
+            
+        <div className={showOverlay ? 'overlay' : 'overlay hidden'}></div>
+
         <div className="landing-container">
             <h1>Welcome to Schedule Chat</h1>
             <p>Start creating your schedule by chatting with our AI assistant!</p>
