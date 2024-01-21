@@ -3,6 +3,7 @@ import './ChatWindow.css';
 import { getDatabase, ref, push, onValue, get } from 'firebase/database';
 import {getAuth, onAuthStateChanged} from 'firebase/auth';
 import {auth} from '../../../main.jsx'
+import {parseCourseArrayClasses, writeToFirebaseWithObjectType} from "../VisualResponse/VisualResponse.jsx";
 
 const initMessages = () => {
   const dbRef = ref(getDatabase());
@@ -65,7 +66,7 @@ function ChatWindow() {
         })
       }
     });
-    
+
   };
   // Fetch message history when the component mounts
   useEffect(() => {
@@ -99,8 +100,8 @@ function ChatWindow() {
     // // Simulate loading for 2 seconds
     // await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    // const auth = getAuth();
-    // const userId = auth.currentUser ? auth.currentUser.uid : 'anonymous';
+    const auth = getAuth();
+    const userId = auth.currentUser ? auth.currentUser.uid : 'anonymous';
 
     const userMessage = {
       text: messageText,
@@ -115,30 +116,26 @@ function ChatWindow() {
     setMessages([...messages, userMessage]);
     setNewMessage('');
 
-    const userId = auth.currentUser ? auth.currentUser.uid : 'anonymous';
-    const db = getDatabase()
-    const messagesRef = ref(db, `${userId}/input/majors`);
-    let majors=[];
-    // Listen for changes in the database and update state
-    onValue(messagesRef, (snapshot) => {
-      console.log(snapshot.exists());
-      if (snapshot.exists()) {
-        const degrees = snapshot.val();
-        const extracted = Object.values(degrees);
-        console.log('hgfgfgyguy',degrees);
-        majors = extracted;
-      }
-    });
-    console.log('1234567',majors);
 
 
-    const base_url = 'http://127.0.0.1:8001/thread?'
-    const res = await fetch(base_url + new URLSearchParams({
-      message: messageText,
-      degrees: majors.toString()
+    const thread_url = 'http://127.0.0.1:8001/thread?'
+    const res1 = await fetch(thread_url + new URLSearchParams({
+      message: messageText
     }));
-    let chat_data = await res.json();
+
+    const catalog_url = 'http://127.0.0.1:8001/catalog?'
+    const res2 = await fetch(catalog_url + new URLSearchParams({
+      query: messageText
+    }));
+    
+    let chat_data = await res1.json();
+    let widget_data = await res2.json();
+
     console.log(chat_data);
+    console.log(widget_data);
+
+    let classesData = parseCourseArrayClasses(widget_data);
+    writeToFirebaseWithObjectType(classesData, 'classes');
 
     const aiMessage = {
       text: chat_data.response,
@@ -153,7 +150,7 @@ function ChatWindow() {
     setNewMessage('');
     setIsLoading(false)
 
-    // let db = getDatabase();
+    const db = getDatabase();
     const userMessagesRef = ref(db, `${userId}/input/chats`);
     push(userMessagesRef, userMessage)
         // .then(() => {
