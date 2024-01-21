@@ -23,8 +23,6 @@ const initMessages = () => {
   return messageData
 }
 
-
-
 function ChatWindow() {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
@@ -38,6 +36,18 @@ function ChatWindow() {
 
   // Scroll to the bottom whenever messages change
   useEffect(scrollToBottom, [messages]);
+
+  const demarkupText = (text) => {
+    // Remove markdown or HTML-like tags
+    const cleanedText = text.replace(/<[^>]*>|[*_]/g, '');
+    return cleanedText;
+  };
+
+  const extraNewLine = (text) => {
+    // Add another \n to each \n
+    const cleanedText = text.replace(/\n/g, '\n\n');
+    return cleanedText;
+  };
 
   // Function to fetch and set past messages when the component mounts
   const fetchMessageHistory = () => {
@@ -66,7 +76,6 @@ function ChatWindow() {
         })
       }
     });
-
   };
   // Fetch message history when the component mounts
   useEffect(() => {
@@ -152,7 +161,7 @@ function ChatWindow() {
     writeToFirebaseWithObjectType(classesData, 'classes');
 
     const aiMessage = {
-      text: chat_data.response,
+      text: demarkupText(chat_data.response),
       timestamp: new Date().toLocaleTimeString([], {
         hour: '2-digit',
         minute: '2-digit',
