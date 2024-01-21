@@ -4,6 +4,7 @@ import { getDatabase, ref, push, onValue, get } from 'firebase/database';
 import {getAuth, onAuthStateChanged} from 'firebase/auth';
 import {auth} from '../../../main.jsx'
 import {parseCourseArrayClasses, writeToFirebaseWithObjectType} from "../VisualResponse/VisualResponse.jsx";
+import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
 
 const initMessages = () => {
   const dbRef = ref(getDatabase());
@@ -205,8 +206,8 @@ function ChatWindow() {
     <div className="chat-window-container">
       <div className="messages-container">
         {messages.map((message, index) => (
-          <div key={index} className={(message['role'] === 'user') ? 'user-message' : 'ai-message'}>
-            <div>{message.text}</div>
+          <div id="message" key={index} className={(message['role'] === 'user') ? 'user-message' : 'ai-message'}>
+            <div dangerouslySetInnerHTML={{__html: marked.parse(message.text)}}></div>
             <div className="timestamp">{message.timestamp}</div>
           </div>
         ))}

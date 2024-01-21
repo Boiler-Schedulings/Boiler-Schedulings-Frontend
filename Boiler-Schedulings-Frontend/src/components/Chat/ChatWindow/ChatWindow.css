@@ -43,15 +43,20 @@
     background-color: #e0e0e0;
     margin: 5px 0;
     padding: 5px;
+    /* padding-right: 10px; */
     border-radius: 5px;
     scroll-snap-align: start;
 }
 .ai-message {
     background-color: #b1e9aa;
     margin: 5px 0;
-    padding: 5px;
+    padding: 10px;
     border-radius: 5px;
     scroll-snap-align: start;
+}
+
+#message {
+    padding: 20px;
 }
 
 .timestamp {
