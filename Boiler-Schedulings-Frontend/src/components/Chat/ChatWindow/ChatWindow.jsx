@@ -1,8 +1,28 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './ChatWindow.css';
-import { getDatabase, ref, push, onValue } from 'firebase/database';
+import { getDatabase, ref, push, onValue, get } from 'firebase/database';
 import {getAuth, onAuthStateChanged} from 'firebase/auth';
 import {auth} from '../../../main.jsx'
+
+const initMessages = () => {
+  const dbRef = ref(getDatabase());
+  const auth = getAuth();
+  const userId = auth.currentUser ? auth.currentUser.uid : 'anonymous';
+  let messageData = []
+  get(child(dbRef, `${userId}/input/chats`)).then((snapshot) => {
+    if (snapshot.exists()) {
+      console.log(snapshot.val());
+      messageData = snapshot.val();
+    } else {
+      console.log("No data available");
+    }
+  }).catch((error) => {
+    console.error(error);
+  });
+  return messageData
+}
+
+
 
 function ChatWindow() {
   const [messages, setMessages] = useState([]);
@@ -23,16 +43,29 @@ function ChatWindow() {
     const auth = getAuth();
     const userId = auth.currentUser ? auth.currentUser.uid : 'anonymous';
     const db = getDatabase();
-    const messagesRef = ref(db, `${userId}/input/chats`);
-
+    const userMessagesRef = ref(db, `${userId}/input/chats`);
+    const aiMessagesRef = ref(db, `${userId}/output/chats`);
     // Listen for changes in the database and update state
-    onValue(messagesRef, (snapshot) => {
+    onValue(userMessagesRef, (snapshot) => {
       if (snapshot.exists()) {
-        const messageData = snapshot.val();
-        const messageArray = Object.values(messageData);
-        setMessages(messageArray);
+        const userMessageData = snapshot.val();
+        const userMessageArray = Object.values(userMessageData);
+        onValue(aiMessagesRef, (snapshot1) => {
+          if (snapshot1.exists()) {
+            const aiMessageData = snapshot1.val();
+            const aiMessageArray = Object.values(aiMessageData);
+            console.log("AI: ", aiMessageArray);
+            const allMessageArray = []
+            for (let i = 0; i < userMessageArray.length; i++) {
+              allMessageArray.push(userMessageArray[i]);
+              allMessageArray.push(aiMessageArray[i]);
+            }
+            setMessages([...allMessageArray]);
+          }
+        })
       }
     });
+    
   };
   // Fetch message history when the component mounts
   useEffect(() => {
@@ -102,6 +135,7 @@ function ChatWindow() {
     }
     setMessages([...messages, aiMessage]);
     setNewMessage('');
+    setIsLoading(false)
 
     const db = getDatabase();
     const userMessagesRef = ref(db, `${userId}/input/chats`);
@@ -113,9 +147,9 @@ function ChatWindow() {
         .catch((error) => {
           console.error('Error sending message: ', error);
         })
-        .finally(() => {
-          setIsLoading(false);
-        });
+        // .finally(() => {
+        //   setIsLoading(false);
+        // });
 
     const aiMessagesRef = ref(db, `${userId}/output/chats`);
     push(aiMessagesRef, aiMessage)
@@ -126,9 +160,9 @@ function ChatWindow() {
         .catch((error) => {
           console.error('Error sending message: ', error);
         })
-        .finally(() => {
-          setIsLoading(false);
-        });
+        // .finally(() => {
+        //   setIsLoading(false);
+        // });
   };
 
   return (
