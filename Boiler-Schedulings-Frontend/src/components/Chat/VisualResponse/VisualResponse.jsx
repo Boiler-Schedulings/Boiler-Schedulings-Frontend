@@ -92,7 +92,7 @@ function VisualResponse() {
 
     return (
         <div className="visual-response-container">
-            {widgets.map((widget) => createWidget(widget.type, widget.data))}
+            {Object.values(widgets).map((widget) => createWidget(widget.type, widget.data))}
             <div className="padding"></div>
         </div>
     );
