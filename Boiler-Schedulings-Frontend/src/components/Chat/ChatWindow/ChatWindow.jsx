@@ -157,7 +157,7 @@ function ChatWindow() {
     console.log(chat_data);
     console.log(widget_data);
 
-    let classesData = parseCourseArrayClasses(widget_data);
+    let classesData = parseCourseArrayClasses(widget_data['documents'][0]);
     writeToFirebaseWithObjectType(classesData, 'classes');
 
     const aiMessage = {
@@ -169,6 +169,7 @@ function ChatWindow() {
       }),
       role: "assistant"
     }
+    console.log(aiMessage)
     setMessages([...messages, aiMessage]);
     setNewMessage('');
     setIsLoading(false)
